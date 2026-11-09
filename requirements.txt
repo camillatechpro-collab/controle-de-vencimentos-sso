@@ -1,0 +1,10 @@
+streamlit>=1.50,<2
+SQLAlchemy>=2.0.30,<2.1
+pandas>=2.2
+plotly>=5.22
+reportlab>=4.2
+openpyxl>=3.1.2
+pydantic>=2.7,<3
+python-dotenv>=1.0
+# desenvolvimento / testes
+pytest>=8

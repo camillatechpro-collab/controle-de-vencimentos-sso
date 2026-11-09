@@ -1,0 +1,54 @@
+[server]
+# Limite de upload (MB) aplicado pelo próprio Streamlit
+maxUploadSize = 10
+enableXsrfProtection = true
+enableCORS = false
+headless = true
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "viewer"  # mostra o menu ⋮ com Settings (tema claro/escuro)
+showErrorDetails = false
+
+# Identidade visual NOLTH (mesma linguagem do site nolth.netlify.app).
+# O usuário escolhe Claro/Escuro em ⋮ → Settings → "Choose app theme".
+[theme]
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+headingFont = "'Space Grotesk':https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"
+baseRadius = "0.75rem"
+buttonRadius = "0.6rem"
+showWidgetBorder = true
+
+[theme.dark]
+primaryColor = "#3BE3F0"
+backgroundColor = "#101522"
+secondaryBackgroundColor = "#161D2E"
+textColor = "#F1F3F8"
+borderColor = "#232C40"
+dataframeBorderColor = "#232C40"
+dataframeHeaderBackgroundColor = "#161D2E"
+linkColor = "#B98CFF"
+codeBackgroundColor = "#161D2E"
+
+[theme.dark.sidebar]
+backgroundColor = "#0C111C"
+secondaryBackgroundColor = "#161D2E"
+borderColor = "#1C2436"
+
+[theme.light]
+primaryColor = "#0A8F9C"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F3F5FA"
+textColor = "#141A2A"
+borderColor = "#DDE2EC"
+dataframeBorderColor = "#E3E7EF"
+dataframeHeaderBackgroundColor = "#F3F5FA"
+linkColor = "#7C4DDB"
+codeBackgroundColor = "#F3F5FA"
+
+[theme.light.sidebar]
+backgroundColor = "#F6F7FB"
+secondaryBackgroundColor = "#ECEFF6"
+borderColor = "#E3E7EF"
