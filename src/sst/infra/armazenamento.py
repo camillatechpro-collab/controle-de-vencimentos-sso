@@ -63,6 +63,9 @@ def validar_arquivo(nome_original: str, conteudo: bytes) -> tuple[str, str]:
 
 
 def salvar(tenant_id: int, nome_original: str, conteudo: bytes) -> ArquivoSalvo:
+    from sst import demo  # import local: evita ciclo com config
+
+    demo.bloquear("O envio de anexos está desativado na demonstração pública.")
     mime, ext = validar_arquivo(nome_original, conteudo)
     base = get_settings().anexos_dir.resolve()
     pasta = base / str(int(tenant_id))

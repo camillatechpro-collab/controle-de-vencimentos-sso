@@ -9,7 +9,7 @@ Desenvolvido por **[NOLTH Web Design Studio](https://nolth.netlify.app/)** — C
 **Destaques:** painel de vencimentos com gráficos · perfil completo do colaborador
 (ASOs, treinamentos, anexos e histórico de renovações) · turmas de treinamento por NR ·
 consulta de CNPJ em dados públicos · CPF mascarado com auditoria (LGPD) ·
-relatórios em Excel · tema claro e escuro · 63 testes automatizados (Pytest).
+relatórios em Excel · tema claro e escuro · 67 testes automatizados (Pytest).
 
 **Executar no Windows:** dê dois cliques em `ABRIR_SISTEMA.bat` (após a instalação abaixo).
 
@@ -69,6 +69,32 @@ python scripts/dados_demo.py
 Cria a empresa **"Empresa Demonstração"** com 2 unidades, 20 colaboradores,
 8 extintores, documentos e a matriz de exigências por cargo.
 Login: `demo@exemplo.com.br` / `Demo2026senha`.
+
+### Modo demonstração pública (`SST_DEMO=1`)
+
+Para publicar uma vitrine do sistema (por exemplo, no portfólio da NOLTH), ative `SST_DEMO=1`. Nesse modo:
+
+- a "Empresa Demonstração" com dados fictícios é criada automaticamente na primeira execução;
+- a tela de login mostra o acesso de demonstração e o botão **Entrar na demonstração**;
+- a conta demo não pode ter senha, e-mail ou perfil alterados, e erros de senha não a bloqueiam;
+- o envio de anexos fica desativado.
+
+Fora desse modo, nada muda no comportamento do sistema.
+
+**Publicar grátis no Streamlit Community Cloud:**
+
+1. Em https://share.streamlit.io, entre com o GitHub e clique em **Create app → Deploy a public app from GitHub**.
+2. Repositório: `camillatechpro-collab/controle-de-vencimentos-sso` · Branch: `main` · Arquivo: `app.py`.
+3. Em **Advanced settings**: Python **3.12** (ou 3.13) e, em **Secrets**, cole:
+   ```toml
+   SST_DEMO = "1"
+   ```
+4. Clique em **Deploy**. O endereço fica como `https://SEU-APP.streamlit.app`.
+5. Para exibir dentro de outro site, use `https://SEU-APP.streamlit.app/?embed=true`.
+
+> No plano gratuito o app "dorme" após um período sem acessos; o primeiro visitante clica em
+> "Yes, get this app back up" e ele volta em alguns segundos, com os dados fictícios recriados.
+> Use essa hospedagem **somente para a demonstração**: dados reais de clientes exigem servidor próprio (veja "Produção").
 
 ## 4. Executar
 

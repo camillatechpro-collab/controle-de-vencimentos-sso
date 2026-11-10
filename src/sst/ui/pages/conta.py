@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import streamlit as st
+from sst import demo
 from sst.domain.permissoes import UsuarioContexto
 from sst.services.auth_service import AuthService
 from sst.services.tenant_service import existe_empresa
@@ -19,6 +20,15 @@ def pagina_login() -> None:
         aviso = estado.aviso_login()
         if aviso:
             st.warning(aviso)
+        if demo.ativo():
+            st.info(f"🧪 **Demonstração pública** com dados fictícios.  \n"
+                    f"E-mail: `{demo.EMAIL}` · Senha: `{demo.SENHA}`")
+            if st.button("Entrar na demonstração", type="primary", use_container_width=True):
+                ok, r = executar(AuthService.autenticar, demo.EMAIL, demo.SENHA)
+                if ok:
+                    ctx, trocar = r
+                    estado.iniciar_sessao(ctx, trocar)
+                    st.rerun()
         if not existe_empresa():
             st.info(
                 "Nenhuma empresa cadastrada ainda. No terminal, na pasta do projeto, execute:\n\n"

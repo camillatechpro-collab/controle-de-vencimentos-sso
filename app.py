@@ -14,6 +14,7 @@ if str(RAIZ / "src") not in sys.path:
 
 import streamlit as st  # noqa: E402
 
+from sst import demo  # noqa: E402
 from sst.domain.permissoes import Permissao, UsuarioContexto  # noqa: E402
 from sst.infra.db.engine import criar_tabelas  # noqa: E402
 from sst.logging_config import get_logger, setup_logging  # noqa: E402
@@ -40,6 +41,9 @@ log = get_logger("app")
 def _preparar_banco() -> bool:
     """Executado uma vez por processo: garante que as tabelas existem."""
     criar_tabelas()
+    if demo.ativo():
+        demo.preparar_dados()
+        log.info("Modo demonstração: dados fictícios prontos")
     log.info("Banco verificado")
     return True
 
@@ -55,6 +59,8 @@ def _pagina(fn, ctx: UsuarioContexto, titulo: str, icone: str, url: str, padrao:
 def _sidebar(ctx: UsuarioContexto) -> None:
     with st.sidebar:
         marca.marca_lateral()
+        if demo.ativo():
+            st.info("🧪 **Demonstração** · dados fictícios. Fique à vontade para explorar.")
         st.markdown(f"**{ctx.nome}**  \n{ctx.perfil.rotulo}")
         if ctx.restrito_por_unidade:
             st.caption(f"Acesso restrito a {len(ctx.unidades_ids)} unidade(s)")

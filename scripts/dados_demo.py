@@ -34,7 +34,7 @@ from sst.services.conformidade_service import ConformidadeService  # noqa: E402
 from sst.services.tenant_service import criar_tenant  # noqa: E402
 from sst.services.vencimento_service import VencimentoService  # noqa: E402
 
-EMAIL, SENHA = "demo@exemplo.com.br", "Demo2026senha"
+from sst.demo import EMAIL, SENHA  # noqa: E402
 NOMES = ["Ana", "Bruno", "Carla", "Diego", "Elaine", "Fábio", "Gabriela", "Henrique", "Isabela",
          "João", "Karina", "Lucas", "Mariana", "Nelson", "Olívia", "Paulo", "Renata", "Sérgio",
          "Tatiane", "Vinícius"]

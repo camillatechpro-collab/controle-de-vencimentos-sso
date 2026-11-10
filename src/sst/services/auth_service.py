@@ -7,6 +7,7 @@ from datetime import timedelta
 from sqlalchemy import select
 
 from sst.config import get_settings
+from sst import demo
 from sst.domain.enums import AcaoAuditoria, Perfil
 from sst.domain.exceptions import AutenticacaoError, ValidacaoError
 from sst.domain.permissoes import UsuarioContexto
@@ -101,6 +102,7 @@ class AuthService:
 
     @staticmethod
     def trocar_senha(ctx: UsuarioContexto, senha_atual: str, nova: str, confirmacao: str) -> None:
+        demo.proteger_conta_demo(ctx.email)
         erros = problemas_senha(nova or "")
         if nova != confirmacao:
             erros.append("a confirmação não confere com a nova senha")

@@ -7,6 +7,7 @@ from typing import Any
 import pandas as pd
 from sqlalchemy import func, select
 
+from sst import demo
 from sst.domain.enums import AcaoAuditoria, Perfil
 from sst.domain.exceptions import RegraNegocioError
 from sst.domain.permissoes import Permissao, UsuarioContexto
@@ -112,6 +113,7 @@ class UsuarioService:
             u = self._repo(s).obter_ou_erro(ident)
             if Perfil(u.perfil) is Perfil.SUPERADMIN and self.ctx.perfil is not Perfil.SUPERADMIN:
                 raise RegraNegocioError("Usuário superadministrador não pode ser alterado aqui.")
+            demo.proteger_conta_demo(u.email)
             if s.scalars(select(Usuario.id).where(Usuario.email == d["email"], Usuario.id != ident)).first():
                 raise RegraNegocioError("Já existe um usuário com este e-mail.")
             if ident == self.ctx.usuario_id and (not d["ativo"] or d["perfil"] != u.perfil):
@@ -135,6 +137,7 @@ class UsuarioService:
         senha = gerar_senha_temporaria()
         with session_scope() as s:
             u = self._repo(s).obter_ou_erro(ident)
+            demo.proteger_conta_demo(u.email)
             u.senha_hash = gerar_hash_senha(senha)
             u.deve_trocar_senha = True
             u.tentativas_falhas = 0
